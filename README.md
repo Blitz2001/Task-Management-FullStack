@@ -1,64 +1,113 @@
-Task Management System (Full-Stack)
-A basic task management application built with a .NET Web API backend and an Angular frontend. This project satisfies all core requirements, including CRUD operations, side-by-side views, search/filtering, and a simple authentication mechanism.
+# 🗂️ Task Management System (Full-Stack)
 
-🚀 Tech Stack
-Backend: .NET 8 Web API
+A professional **full-stack Task Management application** built with a **.NET 8 Web API backend** and an **Angular 18+ frontend**, using **Microsoft SQL Server** for persistent storage.
 
-Frontend: Angular 18+ (Standalone Components)
+This project demonstrates clean architecture, RESTful API design, and a modern SPA frontend. It fulfills all core requirements including **CRUD operations**, **search & filtering**, **side-by-side task views**, and **basic authentication**.
 
-Database: MSSQL / SQL Express
+---
 
-Styling: Modern CSS with Flexbox for side-by-side layout
+## 🚀 Tech Stack
 
-🛠️ Installation & Setup
-1. Database Setup
-Open SQL Server Management Studio (SSMS).
+### Backend
+- **.NET 8 Web API**
+- Entity Framework Core
+- RESTful API architecture
 
-Create a new database named TaskManagerDB.
+### Frontend
+- **Angular 18+**
+- Standalone Components
+- Modern CSS (Flexbox)
 
-Open and run the database_setup.sql script included in this repository to create the tables and seed initial data.
+### Database
+- **Microsoft SQL Server / SQL Express**
 
-2. Backend Setup (.NET API)
-Navigate to the /backend folder.
+---
 
-Open appsettings.json and ensure the ConnectionStrings matches your local SQL Server instance.
+## ✨ Features
 
-Run the following command:
+- ✅ **Full CRUD Operations** for tasks  
+- 📊 **Real-Time Statistics**  
+  - Live counters for **Pending** and **Completed** tasks  
+- 🧩 **Interactive Dashboard**  
+  - Responsive task cards  
+  - Checkbox-based status toggling  
+- 🔍 **Filtering & Sorting**  
+  - Real-time search by task title  
+  - Status-based tabs (Pending / Completed)  
+- 🔔 **User Feedback**  
+  - Toast notifications for all database actions  
+- 🔐 **Simple Authentication System**  
 
-Bash
+---
+
+## 🛠️ Setup Instructions
+
+### 1️⃣ Database Configuration
+
+1. Open **SQL Server Management Studio (SSMS)**  
+2. Create a database named:
+
+   ```sql
+   TaskManagerDB
+
+Run the provided database_setup.sql script to create the schema and insert sample data.
+
+###2️⃣ Backend Setup (.NET Web API)
+
+Navigate to the backend folder:
+
+cd backend
+
+
+Update the ConnectionStrings section in appsettings.json to match your local SQL Server instance.
+
+Run the API:
 
 dotnet run
-The API will be available at https://localhost:7121 (or your configured port).
 
-3. Frontend Setup (Angular)
-Navigate to the /frontend folder.
+
+The backend will start on the configured localhost port.
+
+3️⃣ Frontend Setup (Angular)
+
+Navigate to the frontend folder:
+
+cd frontend
+
 
 Install dependencies:
 
-Bash
-
 npm install
-Start the development server:
 
-Bash
+
+Start the Angular development server:
 
 ng serve
-Open your browser to http://localhost:4200.
 
-🔐 Authentication
-This application implements a simple username/password mechanism as required:
+
+Open your browser and go to:
+
+http://localhost:4200
+
+🔐 Login Credentials
+
+Use the following credentials to access the dashboard:
 
 Username: admin
-
 Password: password
 
-✨ Features
-CRUD Operations: Create, Read, Update, and Delete tasks with persistent storage.
-
-Dashboard View: Side-by-side layout showing the task list and the add/edit form simultaneously.
-
-Search & Filter: Real-time search by title and tabs to switch between "Pending" and "Completed" tasks.
-
-Statistics: Live counters for pending and completed tasks.
-
-Notifications: Toast notification system for user feedback on all actions.
+📂 Project Structure
+Task-Management-System/
+│
+├── backend/        # .NET 8 Web API
+│   ├── Controllers
+│   ├── Models
+│   ├── Data
+│   └── appsettings.json
+│
+├── frontend/       # Angular 18+ application
+│   ├── src/
+│   ├── components/
+│   └── services/
+│
+└── database_setup.sql

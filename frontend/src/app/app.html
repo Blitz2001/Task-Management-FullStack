@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="toast" [class.show]="showToast" [class.error]="toastType === 'error'">
+    {{ toastMessage }}
+  </div>
+
+  <div *ngIf="!isLoggedIn" class="login-container">
+    <div class="login-card">
+      <h2>Project Login</h2>
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" [(ngModel)]="loginData.username" placeholder="admin">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" [(ngModel)]="loginData.password" placeholder="password">
+      </div>
+      <button class="save-btn" (click)="login()">Login</button>
+    </div>
+  </div>
+
+  <div *ngIf="isLoggedIn" class="main-layout">
+    
+    <div class="list-panel">
+      <div class="dashboard">
+        <div class="stat pending">Pending: {{ pendingCount }}</div>
+        <div class="stat completed">Completed: {{ completedCount }}</div>
+      </div>
+
+      <div class="header-row">
+        <h2>Task List</h2>
+        <button class="logout-link" (click)="logout()">Logout</button>
+      </div>
+
+      <div class="search-container">
+        <input type="text" [(ngModel)]="searchTerm" placeholder="Search tasks...">
+      </div>
+      
+      <div class="tab-menu">
+        <button [class.active]="activeTab === 'pending'" (click)="activeTab = 'pending'">Pending</button>
+        <button [class.active]="activeTab === 'completed'" (click)="activeTab = 'completed'">Completed</button>
+      </div>
+
+      <div *ngFor="let task of filteredTasks" class="card">
+        <div class="card-header">
+          <div class="title-section">
+            <input type="checkbox" [checked]="task.IsCompleted" (change)="toggleStatus(task)">
+            <strong [style.text-decoration]="task.IsCompleted ? 'line-through' : 'none'">
+              {{ task.Title }}
+            </strong>
+          </div>
+          <div class="action-buttons">
+            <button class="edit-btn" (click)="editTask(task)">Edit</button>
+            <button class="delete-btn" (click)="deleteTask(task.Id)">Delete</button>
+          </div>
+        </div>
+        <p>{{ task.Description }}</p>
+        <div *ngIf="task.DueDate" class="date-display">📅 Due: {{ task.DueDate | date:'mediumDate' }}</div>
+      </div>
+    </div>
+
+    <div class="form-panel">
+      <h2>{{ isEditing ? 'Edit Task' : 'Add New Task' }}</h2>
+      <div class="form-group">
+        <label>Title</label>
+        <input [(ngModel)]="newTask.Title" placeholder="Required">
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea [(ngModel)]="newTask.Description" placeholder="Description"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Due Date</label>
+        <input type="date" [(ngModel)]="newTask.DueDate">
+      </div>
+      <button class="save-btn" [disabled]="!newTask.Title.trim()" (click)="saveTask()">
+        {{ isEditing ? 'Update Task' : 'Save' }}
+      </button>
+      <button *ngIf="isEditing" class="cancel-btn" (click)="cancelEdit()">Cancel Edit</button>
+    </div>
+
+  </div>
+</div>
